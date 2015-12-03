@@ -44,22 +44,22 @@
 
             // get contents of table except for exclude
             $(e.element).each( function(i,o) {
-	            var tempRows = "";
-				$(o).find("tr").not(e.settings.exclude).each(function (i,o) {
-					if (e.settings.columns.length == 0) {
-	                    tempRows += "<tr>" + $(o).html() + "</tr>";
+	        var tempRows = "";
+		$(o).find("tr").not(e.settings.exclude).each(function (i,o) {
+		        if (e.settings.columns.length == 0) {
+	                        tempRows += "<tr>" + $(o).html() + "</tr>";
+			} else {
+				var row = "";
+				e.settings.columns.forEach(function(colIndex) {
+					//is it a thead or tbody row?
+					if ($(o).find('th').length>0) {
+						row += $(o).find('th:eq('+colIndex+')')[0].outerHTML;
 					} else {
-						var row = "";
-						e.settings.columns.forEach(function(colIndex) {
-							//is it a thead or tbody row?
-							if ($(o).find('th').length>0) {
-								row += $(o).find('th:eq('+colIndex+')')[0].outerHTML;
-							} else {
-								row += $(o).find('td:eq('+colIndex+')')[0].outerHTML;
-							}
-						})
-						tempRows += '<tr>'+row+'</tr>';
+						row += $(o).find('td:eq('+colIndex+')')[0].outerHTML;
 					}
+				})
+				tempRows += '<tr>'+row+'</tr>';
+			}
                 });
                 e.tableRows.push(tempRows);
             });
