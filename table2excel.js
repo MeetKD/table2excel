@@ -45,7 +45,6 @@
             // get contents of table except for exclude
             $(e.element).each( function(i,o) {
 	            var tempRows = "";
-				console.log(e.settings.columns);
 				$(o).find("tr").not(e.settings.exclude).each(function (i,o) {
 					if (e.settings.columns.length == 0) {
 	                    tempRows += "<tr>" + $(o).html() + "</tr>";
